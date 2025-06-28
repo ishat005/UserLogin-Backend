@@ -6,6 +6,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const router = express.Router();
+
+/*Retrieves the JWT_SECRET environment variable, which is 
+used to sign and verify JSON Web Tokens*/
 const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post("/login", async (req, res) => {
@@ -20,7 +23,7 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign(
       { userId: user._id, username: user.username },
       JWT_SECRET,
-      { expiresIn: '24h' }
+      { expiresIn: "24h" }
     );
 
     res.send({
